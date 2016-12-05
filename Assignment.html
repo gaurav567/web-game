@@ -1,0 +1,246 @@
+<!Assignment web game MINI BLOG>
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SHIELD - Free Bootstrap 3 Theme">
+    <meta name="author" content="Carlos Alvarez - Alvarez.is - blacktie.co">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+	<link rel="stylesheet" type="text/css" media="all" href="css/reset.css" /> <!-- reset css -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+     <title>MINI BLOG GAME</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/icomoon.css">
+    <link href="assets/css/animate-custom.css" rel="stylesheet">
+	<link href="assets/css/tr.css" rel="stylesheet">
+
+<!--    <meta charset="utf-8" /-->
+   
+    <style>
+    	
+		canvas#viewport { border: 1px solid white; width: 900px; } 
+    </style>
+	
+	<!--div id="menu" >  
+  <a href="#" id="home">
+    <img id="menuImg" src="img/tile1_deafult.png" alt="logo" onmouseover="onHover();" 
+      onmouseout="offHover();" />
+  </a>
+</div-->
+
+
+
+
+<center><canvas id="viewport" width="680" height="440" onmouseover="setImageTwo()" onmouseout="setImageOne()"></canvas></center>
+
+<script>
+
+     
+   var canvas = document.getElementById('viewport'),
+   ctx = canvas.getContext('2d');
+
+    make_base();
+       function make_base()
+        {
+           base_image = new Image();
+           base_image.src = 'img/background.png';
+		   base_image1 = new Image();
+           base_image1.src = 'img/tile1_deafult.png';
+		   //base_image1.src='img/tile_deafult.png';
+           base_image.onload = function(){
+           ctx.drawImage(base_image, 0, 0);//100 x coordinate 100 y coordinate
+		   
+		   ctx.beginPath();
+		   ctx.lineWidth=20;
+           ctx.strokeRect(400, 20, 260, 400);
+		   //ctx.border="White"
+		   ctx.fillStyle = "grey";
+           ctx.fillRect(400, 20, 260, 400);
+           //ctx.fillStyle = "GREY";
+           //ctx.fill();
+           ctx.closePath();
+             ctx.fillStyle = "white";
+			 ctx.drawImage(base_image1,20,20);
+			 ctx.font = "80px Calibri";
+             ctx.fillText("A", 40, 80);
+
+     // open the image in a new browser tab
+     // the user can right-click and save that image
+     //var win=window.open();
+     //win.document.write("<img src='"+canvas.toDataURL()+"'/>"); // not working
+			 ctx.drawImage(base_image1,100,20);
+			  ctx.drawImage(base_image1,180,20);
+			   ctx.drawImage(base_image1,260,20);
+			    ctx.drawImage(base_image1,20,100);
+				 ctx.drawImage(base_image1,100,100);
+				  ctx.drawImage(base_image1,180,100);
+				   ctx.drawImage(base_image1,260,100);
+				    ctx.drawImage(base_image1,20,180);
+					 ctx.drawImage(base_image1,100,180);
+					  ctx.drawImage(base_image1,180,180);
+					   ctx.drawImage(base_image1,260,180);
+					    ctx.drawImage(base_image1,20,260);
+						 ctx.drawImage(base_image1,100,260);
+						  ctx.drawImage(base_image1,180,260);
+						   ctx.drawImage(base_image1,260,260);
+						   
+						   ctx.fillText("B", 120, 80);
+						   ctx.fillText("L", 200, 80);
+						   ctx.fillText("E", 280, 80);
+						   ctx.fillText("T", 40, 160);
+						   ctx.fillText("A", 120, 160);
+						   ctx.fillText("C", 200, 160);
+						   ctx.fillText("K", 280, 160);
+						   ctx.fillText("R", 40, 240);
+						   ctx.fillText("O", 120, 240);
+						   ctx.fillText("L", 200, 240);
+						   ctx.fillText("K", 280, 240);
+						   ctx.fillText("A", 40, 320);
+						   ctx.fillText("E", 120, 320);
+						   ctx.fillText("L", 200, 320);
+						   ctx.fillText("A", 280, 320);
+	                       
+          	//var win=window.open();
+            //win.document.write("<img src='"+canvas.toDataURL()+"'/>");  
+			 
+			 
+			  }
+			  
+			  }
+			   
+			   
+			   function init() 
+			 {
+                 setImageOne(); 
+             }
+
+        function setImageOne() { setImage('img/tile1_deafult.png'); }
+
+        function setImageTwo() { setImage('img/tile1_selected.png'); }
+
+        /*function setImage(src) {
+            var canvas = document.getElementById("e");
+			//canvas = document.getElementById("viewport");             //just A Experiment with two same Function with different canvas     
+            var ctx = canvas.getContext("2d");
+            if (ctx == null) return;
+            base_image1 = new Image();
+            base_image1.src = src;
+			ctx.drawImage(base_image1,300,0);
+           //ctx.drawImage(img,0,0);
+        }*/
+	    
+		function setImage(src) {
+            //var canvas = document.getElementById("e");
+			canvas = document.getElementById("viewport");
+            var ctx = canvas.getContext("2d");
+            if (ctx == null) return;
+            base_image1 = new Image();
+            base_image1.src = src;
+			ctx.drawImage(base_image1,300,350);
+        }
+</script>		
+<script type="text/javascript">
+
+var canvas;
+var ctx;
+var x = 75;
+var y = 50;
+var dx = 5;
+var dy = 3;
+var WIDTH = 400;
+var HEIGHT = 300;
+var dragok = false;
+
+
+
+function clear() {
+ ctx.clearRect(0, 0, 0, 0);
+}
+
+function init() {
+ canvas = document.getElementById("viewport");
+ ctx = canvas.getContext("2d");
+ return setInterval(draw, 10);
+}
+
+function draw() {
+ clear();
+ 
+ ctx.fillStyle = "black";
+			 //ctx.drawImage(base_image1,20,20);
+			 ctx.font = "80px Calibri";
+             ctx.fillText("A", 45, 80);
+			 
+			 ctx.fillText("B", 400, 100);
+			
+			ctx.fillText("L", 200, 80);
+						   ctx.fillText("E", 280, 80);
+						   
+						   ctx.fillText("T", 480, 100);
+						   ctx.fillText("A", 440, 100);
+						   
+						   ctx.fillText("C", 200, 160);
+						   ctx.fillText("K", 280, 160);
+						   ctx.fillText("R", 40, 240);
+						   ctx.fillText("O", 120, 240);
+						   ctx.fillText("L", 200, 240);
+						   ctx.fillText("K", 280, 240);
+						   ctx.fillText("A", 40, 320);
+						   ctx.fillText("E", 120, 320);
+						   ctx.fillText("L", 200, 320);
+						   ctx.fillText("A", 280, 320);
+ 
+ 
+}
+
+function myMove(e){
+ if (dragok){
+  x = e.pageX - canvas.offsetLeft;
+  y = e.pageY - canvas.offsetTop;
+ }
+}
+
+function myDown(e){
+ if (e.pageX < x + 15 + canvas.offsetLeft && e.pageX > x - 15 +
+ canvas.offsetLeft && e.pageY < y + 15 + canvas.offsetTop &&
+ e.pageY > y -15 + canvas.offsetTop){                                 //mouse is not working right now for drag and drop but concept I had tried and still working on drag and drop so needs more time.
+  x = e.pageX - canvas.offsetLeft;
+  y = e.pageY - canvas.offsetTop;
+  dragok = true;
+  canvas.onmousemove = myMove;
+ }
+}
+
+function myUp(){
+ dragok = false;
+ canvas.onmousemove = null;
+}
+
+init();
+canvas.onmousedown = myDown;
+canvas.onmouseup = myUp;
+
+</script>
+
+	
+</head>
+<body onload="init()">
+    <div>
+	   <center><h2> Drag and Drop the blocks to make words</h2></center>  
+       <center><h1>MINI BOG GAME</h1></center> 
+    </div>
+	</body> 
+</html>
+
+
+
+
+
